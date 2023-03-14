@@ -17,7 +17,7 @@ course = "Python Programming"
 
 # // BUILT IN FUNCTIONS FOR STRING //
 print(len(course))
-# return letter of that position
+# return individual letter of that position
 print(course[0])
 print(course[-1])
 # return letters inbetween these postions
@@ -94,3 +94,16 @@ print(math.ceil(2.2))
 # // Type Conversion
 x = input("x: ")
 y = x + 1
+# Logic : "1" + 1 cant be possible
+# Correct solution:
+# y = int(x) + 1
+# printf(f"x: {x}, y: {y})
+
+print(bool("0"))
+# anything other than 0 returns False
+print(bool("-1"))
+print(bool("False"))
+
+
+#  // QUIZZ //
+# what are primitive types in python : strings, numbers, boolean
