@@ -1,6 +1,7 @@
 # // DATA STRUCTURES //
 
 # // LISTS //
+from array import array
 from collections import deque
 letters = ["a", "b", "c"]
 matrix = [[0, 1], [0, 2]]
@@ -200,3 +201,60 @@ print("y", y)
 
 # // ARRAYS //
 numbers = array("i", [1, 2, 3])
+numbers[0] = 1.0
+
+
+# // SETS //
+# unordered collection of unique items
+# list to set:
+numbers = [1, 1, 2, 3, 4]
+first = set(numbers)
+# set:
+second = {1, 4}
+# union of two sets:
+print(first | second)
+# intersection of two sets:
+print(first & second)
+# difference of two sets:
+print(first - second)
+# symmetric difference of two sets
+print(first ^ second)
+# unordered collection cannot access them in sequence
+# to check element is in set or not:
+if 1 in first:
+    print("yes")
+
+
+# //  DICTIONARIES //
+#  Like a list, a dictionary is a collection of many values.
+#  But unlike indexes for lists, indexes for dictionaries can use many different data types, not just integers.
+#  Indexes for dictionaries are called keys, and a key with its associated value is called a key-value pair
+point = {"x": 1, "y": 2}
+point = dict(x=1, y=2)
+# to change or add value:
+point["x"] = 10
+point["z"] = 20
+# to check value is present in it or not:
+if "a" in point:
+    print(point["a"])
+print(point.get("a", 0))
+# to delete a item:
+del point["x"]
+
+
+# // DICTIONARY COMPREHENSIONS //
+values = {}
+for x in range(5):
+    values[x] = x*2
+# comprehension:
+values = {x: x*2 for x in range(5)}
+print(values)
+
+
+# // UNPACKING OPERATOR //
+# to take out any individual value in iterable
+first = [1, 2]
+second = [3]
+values = [*first, *second]
+print(values)
+# for dictionary use **
