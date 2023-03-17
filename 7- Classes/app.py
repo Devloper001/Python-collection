@@ -4,15 +4,97 @@
 
 # Class: Human
 # Objects: John, Mary, Jack
+# The self is a shorthand way of referring to an instance.
+import datetime
 
 
-# // CREATING A CLASS //
-class Point:
-    # first letter of every word should be uppercase
-    def draw(self):
-        print("draw")
+class Employee:
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.email = first + '.' + last + '@email.com'
+        self.pay = pay
+
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
 
 
-point = Point()
-print(type(point))
-print(isinstance(point, Point))
+emp_1 = Employee('Corey', 'Schafer', 50000)
+emp_2 = Employee('Test', 'Employee', 60000)
+
+
+# // CLASS VARIABLES //
+# A class variable is a variable that belongs to the class itself, rather than to any specific instance of the class.
+# All instances of the class share the same class variable.
+
+# Class variables are variables that we set inside a class, and are shared among all instances.\
+# Class variables are kind of 'inherited' to the 'self' variables.
+# An inner function can access variables which are in outer functions even if innerfunction is nested deep. In any other case, a function can't access variables not in its scope
+# lexical scope thing
+
+
+# //CLASS METHODS AND STATIC METHODS //
+# regular method: accessible through both class and instance, can called for both
+# class method:  method is not really about an instance of a class, but the class itself,  represented as 'cls' instead of 'class'.
+# static method: doesn't use any of the instance or class's attributes.
+# it is better to make sure we create a static method rather then class or regular method when we are sure that we don't make use of the class or instance within the method.
+class Employee:
+
+    num_of_emps = 0
+    raise_amt = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.email = first + '.' + last + '@email.com'
+        self.pay = pay
+
+        Employee.num_of_emps += 1
+
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amt)
+
+    @classmethod
+    def set_raise_amt(cls, amount):
+        cls.raise_amt = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
+
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
+
+
+emp_1 = Employee('Corey', 'Schafer', 50000)
+emp_2 = Employee('Test', 'Employee', 60000)
+
+Employee.set_raise_amt(1.05)
+
+print(Employee.raise_amt)
+print(emp_1.raise_amt)
+print(emp_2.raise_amt)
+
+emp_str_1 = 'John-Doe-70000'
+emp_str_2 = 'Steve-Smith-30000'
+emp_str_3 = 'Jane-Doe-90000'
+
+first, last, pay = emp_str_1.split('-')
+
+# new_emp_1 = Employee(first, last, pay)
+new_emp_1 = Employee.from_string(emp_str_1)
+
+print(new_emp_1.email)
+print(new_emp_1.pay)
+
+my_date = datetime.date(2016, 7, 11)
+
+print(Employee.is_workday(my_date))
