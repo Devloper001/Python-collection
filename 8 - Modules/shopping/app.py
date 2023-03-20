@@ -3,7 +3,7 @@
 
 # // CREATING MODULES //
 import sys
-from import sales
+import sales
 from sales import calc_shipping, calc_tax
 
 calc_shipping()
